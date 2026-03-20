@@ -18,7 +18,7 @@ export default function Home() {
             Contact
           </Link>
           <Link
-            href="/admin/dashboard"
+            href="/auth/login"
             className="rounded-full border border-red-600 bg-red-600 px-4 py-2 text-white hover:bg-red-700"
           >
             Sign In
@@ -31,6 +31,7 @@ export default function Home() {
           src="/image1.jpg"
           alt="Hero Background"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />
@@ -44,7 +45,7 @@ export default function Home() {
             secure, and built for schools.
           </p>
           <Link
-            href="/admin/dashboard"
+            href="/auth/register"
             className="inline-flex items-center justify-center rounded-full bg-white px-10 py-4 text-lg font-semibold text-red-600 shadow-lg shadow-red-500/20 transition hover:bg-red-50"
           >
             Sign Up
