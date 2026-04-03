@@ -5,6 +5,6 @@ export default {
     out: "./drizzle",
     dialect: "postgresql",
     dbCredentials: {
-        url: "postgres://postgres:Password@localhost:5432/admission_portal",
+        url: "postgresql://postgres.mrwigfjcofqtnrcvgaap:Password321invision@aws-1-eu-north-1.pooler.supabase.com:6543/postgres",
     },
 } satisfies Config;
