@@ -30,7 +30,8 @@ export const sessions = pgTable('sessions', {
     revoked: boolean("revoked").notNull().default(false),
 })
 
-
+// TODO define status as enum
+// createdBy to userID for refrence point
 export const exams = pgTable("exams", {
     id: uuid("id").notNull().primaryKey(),
     title: text("title").notNull(),
@@ -39,7 +40,9 @@ export const exams = pgTable("exams", {
     status: text("status").notNull(),
     duration: text("duration").notNull(),
     totalScore: integer("total-score").notNull(),
-    createdBy: text("created-by").notNull(),
+    userId: uuid("userId").notNull(),
+    startDate: timestamp("start-date", { withTimezone: true }),
+    closeDate: timestamp("close-date", { withTimezone: true }),
     createdAt: timestamp('created_at').notNull().defaultNow(),
 })
 
