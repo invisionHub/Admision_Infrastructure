@@ -47,6 +47,52 @@ export const createExamSchema = z.object({
     closeDate: z.iso.datetime(),
 })
 
+export const createSubjectSchema = z.object({
+    name: z.string().min(3, { error: "Title must be at least 3 chracters" }).max(20, { error: "Title must not be more than 20" }),
+})
+
+const mcqSchema = z.object({
+    type: z.literal("MCQ"),
+    questionText: z.string().min(1, { error: "Title must be at least 3 chracters" }).max(100, { error: "Title must not be more than 20" }),
+    options: z.json(),
+    correctAnswer: z.string().min(1, { error: "Title must be at least 3 chracters" }).max(50, { error: "Title must not be more than 20" }),
+    score: z.number().refine((num) => num <= 0),
+})
+
+const trueFalseSchema = z.object({
+    type: z.literal("TRUE_FALSE"),
+    questionText: z.string().min(1, { error: "Title must be at least 3 chracters" }).max(100, { error: "Title must not be more than 20" }),
+    options: z.json().optional(),
+    correctAnswer: z.enum([ "true", "false" ]),
+    score: z.number().refine((num) => num <= 0),
+})
+
+const essaySchema = z.object({
+    type: z.literal("ESSAY"),
+    questionText: z.string().min(1, { error: "Title must be at least 3 chracters" }).max(100, { error: "Title must not be more than 20" }),
+    options: z.json().optional(),
+    correctAnswer: z.string().min(1, { error: "Title must be at least 3 chracters" }).max(50, { error: "Title must not be more than 20" }),
+    score: z.number().refine((num) => num <= 0),
+})
+
+export const questionsSchema = z.discriminatedUnion("type", [
+    mcqSchema,
+    trueFalseSchema,
+    essaySchema
+])
+
+
+
+// export const questions = pgTable("questions", {
+//     type: text("type").notNull(),
+//     questionText: text("question-text").notNull(),
+//     options: json("options"),
+//     correctAnswer: text("correct-answer").notNull(),
+//     score: integer("score").notNull()
+// })
+
+
+
 
 export type TBaseAuth = z.infer<typeof baseAuthSchema>
 export type TcreateSchool = z.infer<typeof createSchoolSchema>

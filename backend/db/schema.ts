@@ -32,7 +32,7 @@ export const sessions = pgTable('sessions', {
 
 // TODO define status as enum
 // createdBy to userID for refrence point
-export const exams = pgTable("exams", {
+export const exam = pgTable("exams", {
     id: uuid("id").notNull().primaryKey(),
     title: text("title").notNull(),
     slug: text("slug").notNull(),
