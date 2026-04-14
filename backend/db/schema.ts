@@ -52,7 +52,7 @@ export const subject = pgTable("subject", {
     name: text("name").notNull()
 })
 
-export const questions = pgTable("questions", {
+export const question = pgTable("questions", {
     id: uuid("id").notNull().primaryKey(),
     examId: uuid("exam-id").notNull(),
     subjectId: uuid("subject-id").notNull(),

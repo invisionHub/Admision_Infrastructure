@@ -1,6 +1,6 @@
 import { database } from "../db";
-import { exam } from "../db/schema";
-import { TCreateExam } from "./types";
+import { exam, question, subject } from "../db/schema";
+import { TDbExam, TDbQuestion, TDbSubject } from "./types";
 
 
 
@@ -11,10 +11,13 @@ export class ExamRepository {
         this.db = database
     }
 
-    async createExam (examData: TCreateExam) {
+    async createExam (examData: TDbExam) {
         await this.db.insert(exam).values(examData)
     }
-    async addSubjects () {
-
+    async addSubjects (subjectData: TDbSubject) {
+        await this.db.insert(subject).values(subjectData)
+    }
+    async addQuestions (questionData: TDbQuestion) {
+        await this.db.insert(question).values(questionData)
     }
 }
