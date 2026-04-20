@@ -1,5 +1,4 @@
 import { boolean, integer, json, pgTable, text, timestamp, uuid, } from "drizzle-orm/pg-core";
-import { email } from "zod";
 
 
 export const school = pgTable("school-table", {
@@ -35,12 +34,12 @@ export const sessions = pgTable('sessions', {
 export const exam = pgTable("exams", {
     id: uuid("id").notNull().primaryKey(),
     title: text("title").notNull(),
-    slug: text("slug").notNull(),
+    // slug: text("slug").notNull(),
     description: text("description"),
     status: text("status").notNull(),
-    duration: text("duration").notNull(),
+    duration: integer("duration").notNull(),
     totalScore: integer("total-score").notNull(),
-    userId: uuid("userId").notNull(),
+    schoolId: uuid("school-id").notNull(),
     startDate: timestamp("start-date", { withTimezone: true }),
     closeDate: timestamp("close-date", { withTimezone: true }),
     createdAt: timestamp('created_at').notNull().defaultNow(),

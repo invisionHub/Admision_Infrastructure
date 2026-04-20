@@ -93,6 +93,7 @@ export const questionsSchema = z.discriminatedUnion("type", [
 
 
 
-
+export type TCreateSubject = z.infer<typeof createSubjectSchema>
+export type TCreateExam = z.infer<typeof createExamSchema>
 export type TBaseAuth = z.infer<typeof baseAuthSchema>
 export type TcreateSchool = z.infer<typeof createSchoolSchema>

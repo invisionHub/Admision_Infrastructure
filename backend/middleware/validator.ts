@@ -8,14 +8,14 @@ import { ResponseCookies } from "next/dist/compiled/@edge-runtime/cookies";
 
 interface TValidator<T> {
     schema: ZodSchema,
-    handler: (request: NextRequest, data: T) => Promise<Response | ResponseCookies>
+    handler: Function
 }
 
 // curing function
 // intercept the fuction
 
-export function zodValidator<T> (validator: TValidator<T>): typeof validator.handler {
-    return async (request) => {
+export function zodValidator<T> (validator: TValidator<T>) {
+    return async (request: NextRequest) => {
         const body = await request.json()
         const validatedData = validator.schema.safeParse(body)
         if (validatedData.error) throw new BadRequestError(validatedData.error.message)
